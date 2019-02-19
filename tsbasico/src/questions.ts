@@ -4,12 +4,15 @@ import { VpHttp } from './http/vphttp';
 export class Perguntas {
     private dadosDoPedido : any;
     private dadosDaEntrega : any;
-    private dataPizza : any[] = [];
+    private dataSabores : any[] = [];
+    private dataTamanho : any[] = [];
+    private dataCidade : any[] = [];
+    private dataBairros : any[] = [];
     
     public question(){
         this.getSabores();
-        this.pizzaDelivery();
-        this.getTamanho();
+        //this.pizzaDelivery();
+        
     }
 
     public pizzaDelivery(){
@@ -29,13 +32,13 @@ export class Perguntas {
                 name: 'size',
                 type: 'list',
                 message: 'Escolha um tamanho:',
-                choices: ['Pequena','Média','Grande']
+                choices: this.dataTamanho
             },
             {
                 name: 'flavor',
                 type: 'list',
                 message: 'Escolha um sabor:',
-                choices: this.dataPizza
+                choices: this.dataSabores
             },
             {
                 name: 'qt',
@@ -65,13 +68,15 @@ export class Perguntas {
             [
                 {
                     name: 'city',
-                    type: 'input',
-                    message: 'Qual a sua cidade?\n'
+                    type: 'list',
+                    message: 'Escolha a sua cidade:',
+                    choices: this.dataCidade
                 },
                 {
                     name: 'neighborhood',
-                    type: 'input',
-                    message: 'Qual o seu bairro?\n'
+                    type: 'list',
+                    message: 'Escolha o seu Bairro:',
+                    choices: this.dataBairros
                 },
                 {
                     name: 'street',
@@ -112,10 +117,10 @@ export class Perguntas {
             (data : any) => {
                 data.forEach((element:any) => {
                     if(element.Disponivel == true){
-                        this.dataPizza.push(element.Sabor);
+                        this.dataSabores.push(element.Sabor);
                     }
-                    
                 });
+                this.getTamanho();
                 
             },
             (error : any) => {
@@ -128,9 +133,48 @@ export class Perguntas {
         let http = new VpHttp('http://5c64a0dfc969210014a32ee0.mockapi.io/tamanho');
 
         http.get().subscribe(
-
-        )
+            (data : any) => {
+                data.forEach((element:any) => {
+                    this.dataTamanho.push(element.Tamanho);
+                });
+                this.getCidade();
+            },
+            (error : any) =>{
+                console.log(error);
+            }
+        );
     }  
+    private getCidade(){
+        let http = new VpHttp('http://5c64a0dfc969210014a32ee0.mockapi.io/cidade');
+
+        http.get().subscribe(
+            (data : any) => {
+                data.forEach((element:any) => {
+                    this.dataCidade.push(element.Cidade);
+                });
+                this.getBairros();
+                
+            },
+            (error : any) =>{
+                console.log(error);
+            }
+        );
+    } 
+    private getBairros(){
+        let http = new VpHttp('http://5c64a0dfc969210014a32ee0.mockapi.io/bairros');
+
+        http.get().subscribe(
+            (data : any) => {
+                data.forEach((element:any) => {
+                    this.dataBairros.push(element.Bairro);
+                });
+                this.pizzaDelivery();
+            },
+            (error : any) =>{
+                console.log(error);
+            }
+        );
+    } 
     
 }   
 
