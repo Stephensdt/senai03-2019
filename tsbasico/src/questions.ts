@@ -111,12 +111,13 @@ export class Perguntas {
         }
     }
     private getSabores(){
-        let http = new VpHttp('http://5c64a0dfc969210014a32ee0.mockapi.io/sabor');
+        let http = new VpHttp('http://5c6c7c72d51de300146f5b75.mockapi.io/Sabores');
 
         http.get().subscribe(
             (data : any) => {
+                console.log(JSON.stringify(data))
                 data.forEach((element:any) => {
-                    if(element.Disponivel == true){
+                    if(element.Disponibilidade == true){
                         this.dataSabores.push(element.Sabor);
                     }
                 });
