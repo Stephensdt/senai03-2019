@@ -11,6 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Messages } from '../providers/messages';
 import { Toast } from '../providers/toast';
+import { ApiLoginProvider } from '../providers/api-login/api-login';
 
 
 
@@ -38,7 +39,8 @@ import { Toast } from '../providers/toast';
     SplashScreen,
     Messages,
     Toast,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ApiLoginProvider
   ]
 })
 export class AppModule {}
