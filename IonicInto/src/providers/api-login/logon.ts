@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpProvider} from './http';
 
 /*
   Generated class for the ApiLoginProvider provider.
@@ -10,12 +11,17 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiLoginProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(private http : HttpProvider) {
     console.log('Hello ApiLoginProvider Provider');
   }
 
-  private login (userName : string, password : string){
+  private login (username : string, password : string){
+    let obj = {
+      userName : username,
+      password : password
+    }
 
+    this.http.post(obj);
   }
 
 }
