@@ -11,9 +11,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Messages } from '../providers/messages';
 import { Toast } from '../providers/toast';
-import { ApiLoginProvider } from '../providers/api-login/api-login';
-
-
+import { LogonProvider } from '../providers/logon/logon';
+import { HttpModule} from '@angular/http';
+import { HttpProvider } from '../providers/api-login/http';
+import { TamanhoProvider } from '../providers/tamanho/tamanho';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ApiLoginProvider } from '../providers/api-login/api-login';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -40,7 +42,9 @@ import { ApiLoginProvider } from '../providers/api-login/api-login';
     Messages,
     Toast,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ApiLoginProvider
+    LogonProvider,
+    HttpProvider,
+    TamanhoProvider
   ]
 })
 export class AppModule {}
