@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TamanhoProvider } from '../../providers/tamanho/tamanho';
+import { SaboresProvider } from '../../providers/sabores/sabores';
 
 /**
  * Generated class for the MainPage page.
@@ -16,7 +17,22 @@ import { TamanhoProvider } from '../../providers/tamanho/tamanho';
 })
 export class MainPage {
   public listaTamanhos = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams, private tamanho : TamanhoProvider) {
+  public listaSabores = [];
+  public idTamanho : any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private tamanho : TamanhoProvider, private sabor : SaboresProvider) {
+  }
+  
+  onChange(){
+    console.log(this.idTamanho);
+    this.sabor.listarSabores(this.idTamanho).subscribe(
+      (data : any) => { 
+        console.log(data)
+        this.listaSabores = data
+      },
+      (error : any) => {
+     } 
+    )
   }
 
   ionViewDidLoad() {
@@ -28,5 +44,4 @@ export class MainPage {
      } 
     )
   }
-
 }

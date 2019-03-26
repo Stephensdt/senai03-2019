@@ -15,6 +15,7 @@ import { LogonProvider } from '../providers/logon/logon';
 import { HttpModule} from '@angular/http';
 import { HttpProvider } from '../providers/api-login/http';
 import { TamanhoProvider } from '../providers/tamanho/tamanho';
+import { SaboresProvider } from '../providers/sabores/sabores';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { TamanhoProvider } from '../providers/tamanho/tamanho';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LogonProvider,
     HttpProvider,
-    TamanhoProvider
+    TamanhoProvider,
+    SaboresProvider
   ]
 })
 export class AppModule {}
