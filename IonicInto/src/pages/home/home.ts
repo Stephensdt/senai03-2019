@@ -4,7 +4,7 @@ import { Toast } from '../../providers/toast'
 import { MainPage } from '../main/main';
 import { LogonProvider } from '../../providers/logon/logon';
 
-@Component({  
+@Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
@@ -20,12 +20,12 @@ export class HomePage {
 
   login() {
     this.logon.login(this.username, this.password).subscribe(
-      (data : any) => { 
+      (data : any) => {
         this.navCtrl.push(MainPage)
       },
       (error : any) => {
       this.toast.show("Erro de Login")
-     } 
+     }
     )
   }
 }

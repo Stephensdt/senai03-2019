@@ -16,13 +16,17 @@ import { HttpModule} from '@angular/http';
 import { HttpProvider } from '../providers/api-login/http';
 import { TamanhoProvider } from '../providers/tamanho/tamanho';
 import { SaboresProvider } from '../providers/sabores/sabores';
+import { DadosPage } from '../pages/dados/dados';
+import { CidadesProvider } from '../providers/cidades/cidades';
+import { BairrosProvider } from '../providers/bairros/bairros';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    MainPage
+    MainPage,
+    DadosPage
 
   ],
   imports: [
@@ -35,7 +39,8 @@ import { SaboresProvider } from '../providers/sabores/sabores';
     MyApp,
     HomePage,
     ListPage,
-    MainPage
+    MainPage,
+    DadosPage
   ],
   providers: [
     StatusBar,
@@ -46,7 +51,9 @@ import { SaboresProvider } from '../providers/sabores/sabores';
     LogonProvider,
     HttpProvider,
     TamanhoProvider,
-    SaboresProvider
+    SaboresProvider,
+    CidadesProvider,
+    BairrosProvider
   ]
 })
 export class AppModule {}

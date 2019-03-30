@@ -1,0 +1,39 @@
+<!--
+  Generated template for the DadosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>DADOS DE ENTREGA</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label>CIDADE</ion-label>
+      <ion-select [(ngModel)]="idCidade" (ionChange)="onChange()">
+        <ion-option value={{cidade.id}} *ngFor="let cidade of listaCidades">{{cidade.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>BAIRRO</ion-label>
+      <ion-select [(ngModel)]="Bairro">
+        <ion-option *ngFor="let bairro of listaBairros">{{bairro.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+
+
+
+
+</ion-content>
