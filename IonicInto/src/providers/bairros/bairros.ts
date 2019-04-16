@@ -16,7 +16,7 @@ export class BairrosProvider {
   }
 
   public listarBairros(idcidade : string){
-    this.http.url = 'http://104.196.102.231/bairros/' + idcidade
+    this.http.url = 'http://localhost:3000/bairros/' + idcidade
     return this.http.get();
   }
 }

@@ -189,36 +189,36 @@ app.get('/sabores/:id', function (req, res) {
             "preco": 20
         }];
     }
-    /*const values = [
-        {
-            "sabor": "Calabresa",
-            "preco": 12
-        },
-        {
-            "sabor": "Quatro Queijos",
-            "preco": 15
-        },
-        {
-            "sabor": "Bacon",
-            "preco": 13
-        },
-        {
-            "sabor": "Chocolate",
-            "preco": 14
-        },
-        {
-            "sabor": "Brocolis",
-            "preco": 16
-        }
-    ];*/
-/*
-    values.map(i => {
-        if (i.codCidade == req.params.id) {
-            list.push(i);
-        }
-    });*/
+    
 
     res.send(sabores);
+});
+
+app.post("/logon", function(req, res){
+    
+    if (req.body.userName == 'stephen' && req.body.password == '1234'){
+        res.send(
+                    {
+                        userName : req.body.userName,
+                        password : req.body.password
+                    }
+                  );
+    } else {
+        res.status(401).send({});
+    }
+
+});
+
+app.post("/usuario", function(req, res){
+
+    if( res.status(200)){
+        res.send(
+            {
+                "IdUsuario": 1,
+                "Nome": "Usuario 1",
+            }
+        )
+    }
 });
 
 app.listen(port, function () {
