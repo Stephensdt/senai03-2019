@@ -1,0 +1,77 @@
+<!--
+  Generated template for the MainPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Prova</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+
+    <!-- <ion-item>
+      <ion-label>Tamanhos</ion-label>
+      <ion-select [(ngModel)]="idTamanho" (ionChange)="onChange()">
+        <ion-option value={{tamanho.id}} *ngFor="let tamanho of listaTamanhos">{{tamanho.name}}</ion-option>
+      </ion-select>
+    </ion-item> -->
+
+    <ion-item>
+      <ion-label>Cidades</ion-label>
+      <ion-select [(ngModel)]="idCidade" (ionChange)="onChange()">
+        <ion-option value={{cidade.id}} *ngFor="let cidade of listaCidades">{{cidade.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="listaBairro.length > 0">
+        <ion-label>Bairro</ion-label>
+        <ion-select [(ngModel)]="idBairro" (ionChange)="onChange()">
+          <ion-option  *ngFor="let bairro of listaBairro">{{bairro.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+</ion-list>
+<ion-list>
+    <ion-item>
+        <ion-label fixed>Rua</ion-label>
+        <ion-input type="text" [(ngModel)]="rua" value=""></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label fixed>Número</ion-label>
+        <ion-input type="text" [(ngModel)]="numero" value=""></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label fixed>complemento</ion-label>
+        <ion-input type="text" [(ngModel)]="complemento" value=""></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label fixed>Referencia</ion-label>
+        <ion-input type="text" [(ngModel)]="referencia" value=""></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button expand="block" (click)="limpaCampos()">Limpar</button>
+    <!-- <ion-list>
+      <ion-item *ngFor="let sabor of listaSabores">{{ sabor.sabor }}
+      <div item-end>R$ {{sabor.preco}}</div>
+    </ion-item>
+    </ion-list> -->
+
+
+
+
+ <!-- <ion-item>
+    <ion-label>Sabores</ion-label>
+    <ion-select [(ngModel)]="sabor">
+      <ion-checkbox *ngFor="let tamanho of listaSabores">{{sabor.name}}</ion-checkbox>
+    </ion-select>
+  </ion-item>-->
+</ion-content>
+
+
