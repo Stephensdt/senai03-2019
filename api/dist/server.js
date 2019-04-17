@@ -8,8 +8,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extend: true }));
 var port = 3000;
-app.post('/logon', function (req, res) {
-});
 app.get('/cidades', function (req, res) {
     res.send([
         {
@@ -180,17 +178,20 @@ app.get('/sabores/:id', function (req, res) {
 });
 app.post("/logon", function (req, res) {
     if (req.body.userName == 'stephen' && req.body.password == '1234') {
-        res.send({
+        console.log("entrou sucesso");
+        res.status(200).send({
             userName: req.body.userName,
             password: req.body.password
         });
     }
     else {
+        console.log("entrou 401");
         res.status(401).send({});
     }
 });
 app.post("/usuario", function (req, res) {
-    if (res.status(200)) {
+    (res.status(200));
+    {
         res.send({
             "IdUsuario": 1,
             "Nome": "Usuario 1",

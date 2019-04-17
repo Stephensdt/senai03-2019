@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { MainPage } from '../pages/main/main';
+import { CadastroPage } from '../pages/cadastro/cadastro';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,13 +21,15 @@ import { DadosPage } from '../pages/dados/dados';
 import { CidadesProvider } from '../providers/cidades/cidades';
 import { BairrosProvider } from '../providers/bairros/bairros';
 
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
     MainPage,
-    DadosPage
+    DadosPage,
+    CadastroPage
 
   ],
   imports: [
@@ -40,7 +43,8 @@ import { BairrosProvider } from '../providers/bairros/bairros';
     HomePage,
     ListPage,
     MainPage,
-    DadosPage
+    DadosPage,
+    CadastroPage
   ],
   providers: [
     StatusBar,
