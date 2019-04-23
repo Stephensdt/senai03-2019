@@ -1,4 +1,9 @@
 import express = require("express");
+import { MySQLFactory } from "./mysql_factory";
+import {MySQL} from './mysql';
+
+
+
 var cors = require("cors");
 var bodyParser = require("body-parser");
 
@@ -190,34 +195,45 @@ app.get('/sabores/:id', function (req, res) {
     res.send(sabores);
 });
 
+//app.post("/logon", function(req, res){
+
+    //if (req.body.userName == 'admin' && req.body.password == '1234'){
+        //console.log("entrou sucesso");
+        //res.status(200).send(
+              //      {
+            //            userName : req.body.userName,
+          //              password : req.body.password
+        //            }
+      //            );
+    //} else {
+      //  console.log("entrou 401");
+    //    res.status(401).send({});
+  //  }
+
+//});
+
 app.post("/logon", function(req, res){
-
-    if (req.body.userName == 'stephen' && req.body.password == '1234'){
-        console.log("entrou sucesso");
-        res.status(200).send(
-                    {
-                        userName : req.body.userName,
-                        password : req.body.password
-                    }
-                  );
-    } else {
-        console.log("entrou 401");
-        res.status(401).send({});
-    }
-
-});
-
-app.post("/usuario", function(req, res){
-
-    ( res.status(200)){
-        res.send(
-            {
-                "IdUsuario": 1,
-                "Nome": "Usuario 1",
-                "Password": "Senha 1",
+       
+    let sql = 'select * from login where login.usuario = \'' + req.body.userName + '\' and login.senha = \'' + req.body.password + '\'';
+    console.log(sql);
+        new MySQLFactory().getConnection().select(sql).subscribe(
+            (data : any) => {
+                console.log(data);
+                if (!data.length || data.length != 1){
+                 res.status(401).send('fodeuse');
+                  return;
+                }
+                
+                res.send({                    
+                    userName : req.body.userName,
+                    password : req.body.password
+                });
+            },
+            (error : any) => {
+                console.log(error);
+                res.status(404).send('Ferrou');
             }
-        )
-    }
+        );
 });
 
 app.listen(port, function () {

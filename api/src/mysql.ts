@@ -3,11 +3,11 @@ import {Connection} from 'mysql';
 const mysql = require('mysql');
 
 export class MySQL {
-    private host     : string = '';
-    private port     : number = 0 ;
-    private user     : string = '';
-    private password : string = '';
-    private database : string = '';
+    private host     : string = 'localhost';
+    private port     : number = 3306 ;
+    private user     : string = 'root';
+    private password : string = 'root';
+    private database : string = 'db_ionic';
 
     constructor (host : string, user : string, password : string, database : string, port : number = 3306){
         this.host     = host    ;

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
+var mysql_factory_1 = require("./mysql_factory");
 var cors = require("cors");
 var bodyParser = require("body-parser");
 var app = express();
@@ -176,27 +177,37 @@ app.get('/sabores/:id', function (req, res) {
     }
     res.send(sabores);
 });
+//app.post("/logon", function(req, res){
+//if (req.body.userName == 'admin' && req.body.password == '1234'){
+//console.log("entrou sucesso");
+//res.status(200).send(
+//      {
+//            userName : req.body.userName,
+//              password : req.body.password
+//            }
+//            );
+//} else {
+//  console.log("entrou 401");
+//    res.status(401).send({});
+//  }
+//});
 app.post("/logon", function (req, res) {
-    if (req.body.userName == 'stephen' && req.body.password == '1234') {
-        console.log("entrou sucesso");
-        res.status(200).send({
+    var sql = 'select * from login where login.usuario = \'' + req.body.userName + '\' and login.senha = \'' + req.body.password + '\'';
+    console.log(sql);
+    new mysql_factory_1.MySQLFactory().getConnection().select(sql).subscribe(function (data) {
+        console.log(data);
+        if (!data.length || data.length != 1) {
+            res.status(401).send('fodeuse');
+            return;
+        }
+        res.send({
             userName: req.body.userName,
             password: req.body.password
         });
-    }
-    else {
-        console.log("entrou 401");
-        res.status(401).send({});
-    }
-});
-app.post("/usuario", function (req, res) {
-    (res.status(200));
-    {
-        res.send({
-            "IdUsuario": 1,
-            "Nome": "Usuario 1",
-        });
-    }
+    }, function (error) {
+        console.log(error);
+        res.status(404).send('Ferrou');
+    });
 });
 app.listen(port, function () {
     console.log("Example app listening on port " + port + "!");
