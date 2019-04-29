@@ -236,6 +236,25 @@ app.post("/logon", function(req, res){
         );
 });
 
+app.post("/usuario", function(req, res){
+       
+    let sql = 'insert into usuario(nome, senha) values(\'' + req.body.userName + '\', \'' + req.body.password + '\')';
+    console.log(sql);
+        new MySQLFactory().getConnection().select(sql).subscribe(
+            (data : any) => {
+                console.log(data);
+                                
+                res.send({                    
+                    isvalid : true,
+                });
+            },
+            (error : any) => {
+                console.log(error);
+                res.status(404).send('Ferrou');
+            }
+        );
+});
+
 app.listen(port, function () {
 console.log(`Example app listening on port ${port}!`);
 });

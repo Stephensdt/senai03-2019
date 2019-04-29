@@ -209,6 +209,19 @@ app.post("/logon", function (req, res) {
         res.status(404).send('Ferrou');
     });
 });
+app.post("/usuario", function (req, res) {
+    var sql = 'insert into usuario(nome, senha) values(\'' + req.body.userName + '\', \'' + req.body.password + '\')';
+    console.log(sql);
+    new mysql_factory_1.MySQLFactory().getConnection().select(sql).subscribe(function (data) {
+        console.log(data);
+        res.send({
+            isvalid: true,
+        });
+    }, function (error) {
+        console.log(error);
+        res.status(404).send('Ferrou');
+    });
+});
 app.listen(port, function () {
     console.log("Example app listening on port " + port + "!");
 });

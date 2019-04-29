@@ -20,6 +20,7 @@ import { SaboresProvider } from '../providers/sabores/sabores';
 import { DadosPage } from '../pages/dados/dados';
 import { CidadesProvider } from '../providers/cidades/cidades';
 import { BairrosProvider } from '../providers/bairros/bairros';
+import { UsuarioProvider } from '../providers/usuario/usuario';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { BairrosProvider } from '../providers/bairros/bairros';
     TamanhoProvider,
     SaboresProvider,
     CidadesProvider,
-    BairrosProvider
+    BairrosProvider,
+    UsuarioProvider
   ]
 })
 export class AppModule {}
