@@ -5,7 +5,6 @@ import { HttpProvider } from '../api-login/http';
 
 /*
   Generated class for the SaboresProvider provider.
-
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */

@@ -21,6 +21,7 @@ import { DadosPage } from '../pages/dados/dados';
 import { CidadesProvider } from '../providers/cidades/cidades';
 import { BairrosProvider } from '../providers/bairros/bairros';
 import { UsuarioProvider } from '../providers/usuario/usuario';
+import { SaboresPage } from '../pages/sabores/sabores';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
     ListPage,
     MainPage,
     DadosPage,
-    CadastroPage
+    CadastroPage,
+    SaboresPage
 
   ],
   imports: [
@@ -45,7 +47,8 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
     ListPage,
     MainPage,
     DadosPage,
-    CadastroPage
+    CadastroPage,
+    SaboresPage
   ],
   providers: [
     StatusBar,
@@ -59,7 +62,8 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
     SaboresProvider,
     CidadesProvider,
     BairrosProvider,
-    UsuarioProvider
+    UsuarioProvider,
+    SaboresProvider
   ]
 })
 export class AppModule {}

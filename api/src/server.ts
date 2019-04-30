@@ -97,7 +97,7 @@ app.get('/bairros/:id', function (req, res) {
 
     res.send(list);
 });
-
+/*
 app.get('/tamanhos', function (req, res) {
     res.send([
         {
@@ -194,6 +194,7 @@ app.get('/sabores/:id', function (req, res) {
 
     res.send(sabores);
 });
+*/
 
 //app.post("/logon", function(req, res){
 
@@ -247,6 +248,40 @@ app.post("/usuario", function(req, res){
                 res.send({                    
                     isvalid : true,
                 });
+            },
+            (error : any) => {
+                console.log(error);
+                res.status(404).send('Ferrou');
+            }
+        );
+});
+
+app.get("/tamanhos", function(req, res){
+       
+    let sql = 'select * from tamanhos';
+    console.log(sql);
+        new MySQLFactory().getConnection().select(sql).subscribe(
+            (data : any) => {
+                console.log(data);
+                                
+                res.send(data);
+            },
+            (error : any) => {
+                console.log(error);
+                res.status(404).send('Ferrou');
+            }
+        );
+});
+
+app.get("/sabores/:idTamanho", function(req, res){
+       
+    let sql = 'select sabores.sabor, sabores.preco from sabores where sabores.idTamanho = \'' + req.params.idTamanho + '\';';
+    console.log(sql);
+        new MySQLFactory().getConnection().select(sql).subscribe(
+            (data : any) => {
+                console.log(data);
+                                
+                res.send(data);
             },
             (error : any) => {
                 console.log(error);

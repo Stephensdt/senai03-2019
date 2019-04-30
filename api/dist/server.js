@@ -88,6 +88,7 @@ app.get('/bairros/:id', function (req, res) {
     });
     res.send(list);
 });
+/*
 app.get('/tamanhos', function (req, res) {
     res.send([
         {
@@ -107,76 +108,84 @@ app.get('/tamanhos', function (req, res) {
         },
     ]);
 });
+
 app.get('/sabores/:id', function (req, res) {
-    var sabores = [];
-    if (req.params.id == 1) {
-        sabores = [{
-                "sabor": "Calabresa",
-                "preco": 12
-            },
-            {
-                "sabor": "Quatro Queijos",
-                "preco": 15
-            },
-            {
-                "sabor": "Bacon",
-                "preco": 13
-            },
-            {
-                "sabor": "Chocolate",
-                "preco": 14
-            },
-            {
-                "sabor": "Brocolis",
-                "preco": 16
-            }];
+    
+    let sabores: any[] = [];
+
+    if (req.params.id == 1){
+        sabores = [ {
+            "sabor": "Calabresa",
+            "preco": 12
+        },
+        {
+            "sabor": "Quatro Queijos",
+            "preco": 15
+        },
+        {
+            "sabor": "Bacon",
+            "preco": 13
+        },
+        {
+            "sabor": "Chocolate",
+            "preco": 14
+        },
+        {
+            "sabor": "Brocolis",
+            "preco": 16
+        }];
     }
-    if (req.params.id == 2) {
-        sabores = [{
-                "sabor": "Calabresa",
-                "preco": 14
-            },
-            {
-                "sabor": "Quatro Queijos",
-                "preco": 18
-            },
-            {
-                "sabor": "Bacon",
-                "preco": 15
-            },
-            {
-                "sabor": "Chocolate",
-                "preco": 16
-            },
-            {
-                "sabor": "Brocolis",
-                "preco": 19
-            }];
+
+    if (req.params.id == 2){
+        sabores = [ {
+            "sabor": "Calabresa",
+            "preco": 14
+        },
+        {
+            "sabor": "Quatro Queijos",
+            "preco": 18
+        },
+        {
+            "sabor": "Bacon",
+            "preco": 15
+        },
+        {
+            "sabor": "Chocolate",
+            "preco": 16
+        },
+        {
+            "sabor": "Brocolis",
+            "preco": 19
+        }];
     }
-    if (req.params.id == 3) {
-        sabores = [{
-                "sabor": "Calabresa",
-                "preco": 19
-            },
-            {
-                "sabor": "Quatro Queijos",
-                "preco": 21
-            },
-            {
-                "sabor": "Bacon",
-                "preco": 17
-            },
-            {
-                "sabor": "Chocolate",
-                "preco": 19
-            },
-            {
-                "sabor": "Brocolis",
-                "preco": 20
-            }];
+
+    if (req.params.id == 3){
+        sabores = [ {
+            "sabor": "Calabresa",
+            "preco": 19
+        },
+        {
+            "sabor": "Quatro Queijos",
+            "preco": 21
+        },
+        {
+            "sabor": "Bacon",
+            "preco": 17
+        },
+        {
+            "sabor": "Chocolate",
+            "preco": 19
+        },
+        {
+            "sabor": "Brocolis",
+            "preco": 20
+        }];
     }
+    
+
     res.send(sabores);
 });
+*/
 //app.post("/logon", function(req, res){
 //if (req.body.userName == 'admin' && req.body.password == '1234'){
 //console.log("entrou sucesso");
@@ -217,6 +226,28 @@ app.post("/usuario", function (req, res) {
         res.send({
             isvalid: true,
         });
+    }, function (error) {
+        console.log(error);
+        res.status(404).send('Ferrou');
+    });
+});
+app.get("/tamanhos", function (req, res) {
+    var sql = 'select * from tamanhos';
+    console.log(sql);
+    new mysql_factory_1.MySQLFactory().getConnection().select(sql).subscribe(function (data) {
+        console.log(data);
+        res.send(data);
+    }, function (error) {
+        console.log(error);
+        res.status(404).send('Ferrou');
+    });
+});
+app.get("/sabores/:idTamanho", function (req, res) {
+    var sql = 'select sabores.sabor, sabores.preco from sabores where sabores.idTamanho = \'' + req.params.idTamanho + '\';';
+    console.log(sql);
+    new mysql_factory_1.MySQLFactory().getConnection().select(sql).subscribe(function (data) {
+        console.log(data);
+        res.send(data);
     }, function (error) {
         console.log(error);
         res.status(404).send('Ferrou');

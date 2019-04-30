@@ -4,6 +4,7 @@ import { Toast } from '../../providers/toast'
 import { MainPage } from '../main/main';
 import { LogonProvider } from '../../providers/logon/logon';
 import { CadastroPage } from '../cadastro/cadastro';
+import { SaboresPage } from '../sabores/sabores';
 
 @Component({
   selector: 'page-home',
@@ -21,6 +22,10 @@ export class HomePage {
 
     cadastro(){
       this.navCtrl.push(CadastroPage);
+    }
+
+    cadastroSabores(){
+      this.navCtrl.push(SaboresPage);
     }
 
   login() {

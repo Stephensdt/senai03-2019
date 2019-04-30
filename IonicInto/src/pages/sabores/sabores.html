@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="cadastro"></ion-icon>
+    </button>
+    <ion-title>Cadastro de Sabores</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  
+  <ion-list>
+    
+    <ion-item>
+      <ion-label floating>Sabor</ion-label>
+      <ion-input [(ngModel)]="sabor" type="text" value=""></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label floating>Preço</ion-label>
+      <ion-input [(ngModel)]="preco"  type="text" value=""></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Tamanhos</ion-label>
+      <ion-select [(ngModel)]="idTamanho" (ionChange)="onChange()">
+        <ion-option value={{tamanho.id}} *ngFor="let tamanho of listaTamanhos">{{tamanho.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  
+  <div padding>
+    <button ion-button primary block  (click)="cadastrar()">Cadastrar Sabor</button>
+  </div>
+
+ 
+
+  
